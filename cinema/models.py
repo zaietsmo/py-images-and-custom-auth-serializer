@@ -100,11 +100,17 @@ class Ticket(models.Model):
     def clean(self):
         if not (1 <= self.row <= self.movie_session.cinema_hall.rows):
             raise ValidationError({
-                'row': f"Row number must be between 1 and {self.movie_session.cinema_hall.rows}."
+                "row": (
+                    f"Row number must be between 1 and "
+                    f"{self.movie_session.cinema_hall.rows}."
+                )
             })
         if not (1 <= self.seat <= self.movie_session.cinema_hall.seats_in_row):
             raise ValidationError({
-                'seat': f"Seat number must be between 1 and {self.movie_session.cinema_hall.seats_in_row}."
+                "seat": (
+                    f"Seat number must be between 1 and "
+                    f"{self.movie_session.cinema_hall.seats_in_row}."
+                )
             })
 
     def save(
